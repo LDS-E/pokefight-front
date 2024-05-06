@@ -1,12 +1,62 @@
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import NavBar from "../components/NavBar";
+import PokemonDetailCard from "../components/PokemonDetailCard";
 
 const ChoosePokemonPage = () => {
-  // Pokedex data
-  const pokedex = []; // Fill with Pokedex data
+  const [pokedex, setPokedex] = useState([]);
+  const [clickedPokemon, setClickedPokemon] = useState(null);
 
-  const handlePokemonClick = (pokemon) => {
-    // Implement logic to display detailed information of the clicked Pokémon
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://pokeapi.co/api/v2/pokemon?limit=151"
+        );
+        const pokemons = response.data.results.map((pokemon, index) => ({
+          id: index + 1,
+          name: pokemon.name,
+          image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+            index + 1
+          }.png`,
+        }));
+        setPokedex(pokemons);
+      } catch (error) {
+        console.error("Error fetching Pokémon data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handlePokemonClick = async (pokemon) => {
+    try {
+      const response = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon/${pokemon.id}`
+      );
+      const detailedPokemon = {
+        id: response.data.id,
+        name: response.data.name,
+        image: response.data.sprites.front_default,
+        types: response.data.types.map((type) => type.type.name),
+        // Add more details as needed
+      };
+      setClickedPokemon(detailedPokemon);
+    } catch (error) {
+      console.error("Error fetching detailed Pokémon data:", error);
+    }
+  };
+
+  // Function to close the Pokémon detail card
+  const handleCloseDetailCard = () => {
+    setClickedPokemon(null);
+  };
+
+  // Function to select the Pokémon again after closing the detail card
+  const handleSelectPokemonAgain = (pokemon) => {
+    setClickedPokemon(null);
+    handlePokemonClick(pokemon);
   };
 
   return (
@@ -42,6 +92,14 @@ const ChoosePokemonPage = () => {
           </Link>
         </div>
       </div>
+      {/* Render the PokemonDetailCard when user clicks on a Pokemon */}
+      {clickedPokemon && (
+        <PokemonDetailCard
+          pokemon={clickedPokemon}
+          onClose={handleCloseDetailCard} // Pass the function to close the card
+          onSelectAgain={handleSelectPokemonAgain} // Pass the function to select the Pokemon again
+        />
+      )}
     </div>
   );
 };
