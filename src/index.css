@@ -1,3 +1,62 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .type-normal {
+    @apply bg-[#aa9] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)];
+  }
+  .type-fire {
+    @apply bg-[#f42] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)];
+  }
+  .type-water {
+    @apply bg-[#39f] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)];
+  }
+  .type-grass {
+    @apply bg-[#7c5] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)];
+  }
+  .type-electric {
+    @apply bg-[#fc3] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)];
+  }
+
+  .type-ice {
+    @apply bg-[#6cf] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)];
+  }
+  .type-fighting {
+    @apply bg-[#a42121] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)];
+  }
+  .type-poison {
+    @apply bg-[#a59] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)];
+  }
+  .type-ground {
+    @apply bg-[#db5] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)];
+  }
+  .type-flying {
+    @apply bg-[#89f] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)];
+  }
+  .type-psyhic {
+    @apply bg-[#f59] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)];
+  }
+  .type-bug {
+    @apply bg-[#ab2] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)];
+  }
+  .type-rock {
+    @apply bg-[#ba6] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)];
+  }
+  .type-ghost {
+    @apply bg-[#6666bb] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)];
+  }
+  .type-dragon {
+    @apply bg-[#76e] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)];
+  }
+
+  .type-dark {
+    @apply bg-[#754] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)];
+  }
+  .type-steel {
+    @apply bg-[#aab] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)];
+  }
+  .type-fairy {
+    @apply bg-[#e9e] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)];
+  }
+}

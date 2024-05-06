@@ -10,15 +10,15 @@ const NavBar = () => {
           Pokémon Battle
         </Link>
         <div>
-          <Link to="/choose-pokemon" className="mx-4">
+          {/* <Link to="/choose-pokemon" className="mx-4">
             Choose Pokémon
           </Link>
           <Link to="/choose-battle-field" className="mx-4">
             Choose Battle Field
           </Link>
-          <Link to="/battle" className="mx-4">
+          <Link to="/battle" cslassName="mx-4">
             Battle
-          </Link>
+          </Link> */}
           <Link to="/leaderboard" className="mx-4">
             Leaderboard
           </Link>
