@@ -1,23 +1,32 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../components/NavBar";
-import PokemonDetailCard from "../components/PokemonDetailCard"; // Importando o componente
+import PokemonDetailCard from "../components/PokemonDetailCard";
+import "../index.css";
 
 const ChoosePokemonPage = () => {
   const [pokedex, setPokedex] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedPokemon, setSelectedPokemon] = useState(null); // State para controlar o Pokémon selecionado
-  const limit = 50; // Número máximo de resultados por página
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [selectedTypes, setSelectedTypes] = useState([]);
+  const limit = 50;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `https://pokefight-backend-9t63.onrender.com/api/pokemons?limit=${limit}&page=${page}&search=${searchTerm}`
-        );
+        let url = `https://pokefight-backend-9t63.onrender.com/api/pokemons?limit=${limit}&page=${page}`;
+
+        if (searchTerm) {
+          url += `&search=${searchTerm}`;
+        }
+
+        if (selectedTypes.length > 0) {
+          url += `&types=${selectedTypes.join(",")}`;
+        }
+
+        const response = await axios.get(url);
         setPokedex(response.data.pokemons);
         setTotalPages(response.data.totalPages);
       } catch (error) {
@@ -26,7 +35,7 @@ const ChoosePokemonPage = () => {
     };
 
     fetchData();
-  }, [page, searchTerm]); // Atualiza quando a página ou o termo de busca mudam
+  }, [page, searchTerm, selectedTypes]);
 
   const nextPage = () => {
     if (page < totalPages) {
@@ -46,10 +55,53 @@ const ChoosePokemonPage = () => {
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
-    setPage(1); // Reinicia a página para a primeira ao iniciar uma nova busca
+    setPage(1);
   };
 
-  // Função para renderizar os botões de página
+  const handleTypeSelect = (type) => {
+    const updatedTypes = selectedTypes.includes(type)
+      ? selectedTypes.filter((selectedType) => selectedType !== type)
+      : [...selectedTypes, type];
+    setSelectedTypes(updatedTypes);
+  };
+
+  const renderTypeButtons = () => {
+    return (
+      <div className="flex flex-wrap justify-center mt-4">
+        {[
+          { type: "Normal", color: "bg-gray-400" },
+          { type: "Fire", color: "bg-red-500" },
+          { type: "Water", color: "bg-blue-500" },
+          { type: "Electric", color: "bg-yellow-400" },
+          { type: "Grass", color: "bg-green-500" },
+          { type: "Ice", color: "bg-blue-200" },
+          { type: "Fighting", color: "bg-red-700" },
+          { type: "Poison", color: "bg-purple-600" },
+          { type: "Ground", color: "bg-yellow-800" },
+          { type: "Flying", color: "bg-blue-300" },
+          { type: "Psychic", color: "bg-pink-500" },
+          { type: "Bug", color: "bg-green-700" },
+          { type: "Rock", color: "bg-gray-600" },
+          { type: "Ghost", color: "bg-purple-700" },
+          { type: "Dragon", color: "bg-indigo-600" },
+          { type: "Dark", color: "bg-black" },
+          { type: "Steel", color: "bg-gray-500" },
+          { type: "Fairy", color: "bg-pink-300" },
+        ].map(({ type, color }) => (
+          <button
+            key={type}
+            onClick={() => handleTypeSelect(type)}
+            className={`m-2 py-1 px-3 rounded-lg text-white text-sm border border-white ${
+              selectedTypes.includes(type) ? color : "bg-gray-400"
+            }`}
+          >
+            {type}
+          </button>
+        ))}
+      </div>
+    );
+  };
+
   const renderPageButtons = () => {
     const pages = [];
     const startPage = Math.max(1, page - 3);
@@ -74,18 +126,23 @@ const ChoosePokemonPage = () => {
     return pages;
   };
 
-  // Função para lidar com o clique em um Pokémon
   const handlePokemonClick = (pokemon) => {
     setSelectedPokemon(pokemon);
   };
 
-  // Função para fechar a janela de detalhes do Pokémon
   const handleCloseDetailCard = () => {
     setSelectedPokemon(null);
   };
 
+  const handleSelect = (selectedPokemon) => {
+    // Aqui você pode fazer o que for necessário com o Pokémon selecionado
+    console.log("Pokemon selecionado:", selectedPokemon);
+    // Por exemplo, você pode querer atualizar o estado com o Pokémon selecionado
+    setSelectedPokemon(selectedPokemon);
+  };
+
   return (
-    <div>
+    <div className="bg-black min-h-screen">
       <NavBar />
       <div className="flex justify-center mt-8">
         <input
@@ -96,12 +153,13 @@ const ChoosePokemonPage = () => {
           className="border border-gray-300 rounded-md px-4 py-2 mr-4"
         />
       </div>
+      {renderTypeButtons()}
       <div className="flex flex-wrap justify-center">
         {pokedex.map((pokemon) => (
           <div
             key={pokemon.id}
             className="m-4 p-4 bg-gray-200 rounded-md cursor-pointer"
-            onClick={() => handlePokemonClick(pokemon)} // Adicionando o handler de clique no Pokémon
+            onClick={() => handlePokemonClick(pokemon)}
           >
             <img
               src={pokemon.images.imageUrl}
@@ -135,10 +193,11 @@ const ChoosePokemonPage = () => {
           Next
         </button>
       </div>
-      {selectedPokemon && ( // Renderiza o card de detalhes apenas se um Pokémon estiver selecionado
+      {selectedPokemon && (
         <PokemonDetailCard
           pokemon={selectedPokemon}
           onClose={handleCloseDetailCard}
+          onSelect={handleSelect}
         />
       )}
     </div>

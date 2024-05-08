@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
-    <nav className="bg-gray-800 text-white p-4">
+    <nav className="bg-red-800 text-white mb-4 px-4 py-8">
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="text-xl font-bold">
           Pokémon Battle
@@ -16,7 +16,7 @@ const NavBar = () => {
           <Link to="/choose-battle-field" className="mx-4">
             Choose Battle Field
           </Link>
-          <Link to="/battle" cslassName="mx-4">
+          <Link to="/battle" className="mx-4">
             Battle
           </Link>
           <Link to="/leaderboard" className="mx-4">
