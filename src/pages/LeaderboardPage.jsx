@@ -1,104 +1,8 @@
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import NavBar from "../components/NavBar";
 
 // const LeaderboardPage = () => {
-//   //  ranking data
-//   // const rankingData = []; // returning array
 
-//   return (
-//     <div>
-//       <NavBar />
-
-//       <h1 className="text-blue text-center my-4 font-bold ">LEADERBOARD</h1>
-//       {/* DaisyUI component */}
-//       <div className="overflow-x-auto mx-[20%] mt-6 ">
-//         <table className="table">
-//           {/* head */}
-//           <thead>
-//             <tr className="">
-//               <th></th>
-//               <th>Nickname</th>
-//               <th>Wins</th>
-//               <th>Loses</th>
-//               <th>Pokes</th>
-//               <th>Score</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {/* row 1 */}
-//             <tr>
-//               <th>1</th>
-//               <td>Forevorbog</td>
-//               <td>852</td>
-//               <td>10</td>
-//               <td>96</td>
-//               <td>15620</td>
-//             </tr>
-//             {/* row 2 */}
-//             <tr className="hover">
-//               <th>2</th>
-//               <td>Uzoukwu</td>
-//               <td>726</td>
-//               <td>17</td>
-//               <td>52</td>
-//               <td>12580</td>
-//             </tr>
-//             {/* row 3 */}
-//             <tr className="hover">
-//               <th>3</th>
-//               <td>Julia</td>
-//               <td>624</td>
-//               <td>18</td>
-//               <td>39</td>
-//               <td>11630</td>
-//             </tr>
-//             {/* row 4 */}
-//             <tr className="hover">
-//               <th>4</th>
-//               <td>Krigami</td>
-//               <td>603</td>
-//               <td>45</td>
-//               <td>48</td>
-//               <td>11234</td>
-//             </tr>
-//             {/* row 5 */}
-//             <tr className="hover">
-//               <th>5</th>
-//               <td>Batachi</td>
-//               <td>594</td>
-//               <td>58</td>
-//               <td>45</td>
-//               <td>9890</td>
-//             </tr>
-//           </tbody>
-//         </table>
-//       </div>
-//       {/* ------------------------------- */}
-
-//       {/* DaisyUI component */}
-
-//       <div className="flex flex-col items-center">
-//         {/* <h2 className="text-2xl font-bold mb-4">Player's Ranking</h2> */}
-//         {/* <div className="w-1/2">
-//           <table className="w-full">
-//             <thead>
-//               <tr>
-//                 <th className="px-4 py-2">Position</th>
-//                 <th className="px-4 py-2">Nickname</th>
-//                 <th className="px-4 py-2">Score</th>
-//               </tr>
-//             </thead>
-//             <tbody>
-//               {rankingData.map((player, index) => (
-//                 <tr key={index}>
-//                   <td className="border px-4 py-2">{index + 1}</td>
-//                   <td className="border px-4 py-2">{player.nickname}</td>
-//                   <td className="border px-4 py-2">{player.score}</td>
-//                 </tr>
-//               ))}
-//             </tbody>
-//           </table>
-//         </div> */}
 //         <div className="mt-8">
 //           <Link
 //             to="/battle"
@@ -113,8 +17,6 @@
 //             Choose Pokémon
 //           </Link>
 //         </div>
-//       </div>
-//     </div >
 //   );
 // };
 
@@ -122,7 +24,6 @@
 
 // New table for the leaderboard
 
-// App.js
 import React from "react";
 import NavBar from "../components/NavBar.jsx";
 
@@ -211,17 +112,27 @@ const leaderboardData = [
 
 const LeaderboardItem = ({ user }) => {
   const { position, nickname, pokemons, wins, loses, scores } = user;
+  let positionClassName = "text-lg";
+
+  if (position === "🥇" || position === "🥈" || position === "🥉") {
+    positionClassName = "text-3xl ml-0"; // Adjust the font size according to your preference
+  }
 
   return (
     <>
       <tr className="hover:bg-slate-200 text-center">
         <td className="px-6 py-4 whitespace-nowrap">
-          <div className="text-lg text-gray-900 flex items-center">
-            <span className="mr-2">{position}</span>
+          <div
+            className={`text-lg text-gray-900 flex items-center ml-4 ${positionClassName}`}
+          >
+            <span className="">{position}</span>
           </div>
         </td>
         <td className="px-6 py-4 whitespace-nowrap">
-          <div className="text-lg text-gray-900 text-center font-bold"> {nickname}</div>
+          <div className="text-lg text-gray-900 text-center font-bold">
+            {" "}
+            {nickname}
+          </div>
         </td>
         <td className="px-6 py-4 whitespace-nowrap">
           <div className="text-lg text-gray-900 text-center"> {pokemons}</div>
@@ -249,16 +160,20 @@ const LeaderboardPage = () => {
     <>
       <NavBar />
       <div className="container mx-auto mt-8">
-        <h1 className="text-4xl setfont font-extrabold text-center text-white mb-8">
-          Pokemon Leaderboard 🏆
-        </h1>
+        <div className="flex m-auto justify-center pb-6">
+          <h1 className="text-4xl setfont font-extrabold text-center text-white mb-8">
+            Pokemon Leaderboard
+          </h1>
+          <p className="text-6xl">🏆</p>
+        </div>
+
         <div className="bg-white/[.5] shadow-lg rounded-lg overflow-hidden">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-800 text-white">
               <tr className="text-center">
                 <th
                   scope="col"
-                  className="px-6 py-3 text-center font-bold text-lg tracking-wider"
+                  className="px-6 pl-0 py-3 text-center setfont font-bold text-lg tracking-wider"
                 >
                   #
                 </th>
@@ -270,38 +185,54 @@ const LeaderboardPage = () => {
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-center font-bold text-lg tracking-wider"
+                  className="px-6 py-3 setfont text-center font-bold text-lg tracking-wider"
                 >
                   Pokemons
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-center font-bold text-lg tracking-wider"
+                  className="px-6 py-3 setfont text-center font-bold text-lg tracking-wider"
                 >
                   Wins
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-center font-bold text-lg tracking-wider"
+                  className="px-6 py-3 setfont text-center font-bold text-lg tracking-wider"
                 >
                   Loses
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-center font-bold text-lg tracking-wider"
+                  className="px-6 py-3 text-center setfont font-bold text-lg tracking-wider"
                 >
                   Scores
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200">
+            <tbody className="divide-y setfont divide-gray-200">
               {leaderboardData.map((user, index) => (
                 <LeaderboardItem key={index} user={user} />
               ))}
             </tbody>
           </table>
         </div>
-      </div >
+      </div>
+      <br />
+      <br />
+      <div className="m-auto items-center text-center pb-14">
+        <Link
+          to="/battle"
+          className="bg-white text-black py-1 px-6 rounded-md mr-4 hover:bg-yellow-500 setfont border-amber-500 border-solid border-4"
+        >
+          Start Battle
+        </Link>
+        <Link
+          to="/choose-pokemon"
+          className="bg-white text-black py-1 px-6 rounded-md mr-4 hover:bg-blue-600 setfont border-blue-600 border-solid border-4"
+        >
+          Choose Pokémon
+        </Link>
+      </div>
     </>
   );
 };

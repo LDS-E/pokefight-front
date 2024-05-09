@@ -63,4 +63,8 @@
   .setfont {
     font-family: "Pokemon Solid", sans-serif;
   }
+  body {
+    background-image: url("./pages/walpaper-pokemon.jpg");
+    background-repeat: repeat-x;
+  }
 }
