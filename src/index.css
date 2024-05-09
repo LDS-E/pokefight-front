@@ -59,4 +59,8 @@
   .type-fairy {
     @apply bg-[#e9e] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)];
   }
+
+  .setfont {
+    font-family: "Pokemon Solid", sans-serif;
+  }
 }
