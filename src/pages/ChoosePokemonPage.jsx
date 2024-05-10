@@ -55,6 +55,7 @@ const ChoosePokemonPage = () => {
         <span className="type-steel">STEEL</span> <br />
         <span className="type-fairy">FAIRY</span> <br />
       </div>
+      <img src={LoadingPokeBall} width={60} />
 
       {/* {pokedex.map((pokemon) => (
         <div key={pokemon.id}>

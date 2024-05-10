@@ -34,7 +34,7 @@
   .type-flying {
     @apply bg-[#89f] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)];
   }
-  .type-psyhic {
+  .type-psychic {
     @apply bg-[#f59] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)];
   }
   .type-bug {
@@ -58,5 +58,17 @@
   }
   .type-fairy {
     @apply bg-[#e9e] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)];
+  }
+  .battlefield-container {
+    @apply grid grid-cols-1 sm:grid-cols-2 items-center justify-items-end gap-8;
+  }
+  .battlefield {
+    @apply relative  hover:scale-110 transition ease-in-out duration-500;
+  }
+  .selectBattlefieldBtn {
+    @apply font-secondary btn bg-red-500 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl  text-white opacity-0 group-hover:opacity-100 transition-all duration-500 hover:bg-red-500;
+  }
+  .battlefieldName {
+    @apply absolute left-1/2 -translate-x-1/2  pt-2 px-4 text-4xl font-secondary;
   }
 }
