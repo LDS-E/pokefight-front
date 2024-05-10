@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Loading from "../public/images/Loading.gif";
 import axios from "axios";
 
-import "animate.css";
+// import "animate.css";
 const BattlePage = ({ battlefield }) => {
   const flygon = "https://pokefight-backend-9t63.onrender.com/api/pokemons/12";
   const azumarill =
