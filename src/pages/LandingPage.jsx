@@ -36,12 +36,6 @@ const LandingPage = () => {
           Battlefield
         </Link>
       </div>
-      <div className="grid grid-cols-2 bg-red-300">
-        <img src="/images/Cave.png" alt="" />
-        <img src="/images/Cave.png" alt="" />
-        <img src="/images/Cave.png" alt="" />
-        <img src="/images/Cave.png" alt="" />
-      </div>
     </div>
   );
 };
