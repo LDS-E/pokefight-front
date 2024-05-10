@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
-import NavBar from "../components/NavBar";
 
 const AboutPage = () => {
   return (
     <div>
-      <NavBar />
       <div className="container mx-auto mt-8">
         <h2 className="text-2xl font-bold mb-4">About Pokémon Battle</h2>
         <p>

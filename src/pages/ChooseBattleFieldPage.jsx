@@ -4,7 +4,6 @@ import NavBar from "../components/NavBar";
 const ChooseBattleFieldPage = ({ setBattlefied }) => {
   return (
     <div className="bg-[url('/images/Newbattlefield.png')] bg-center bg-cover h-screen  overflow-auto">
-      <NavBar />
       <h1 className="text-center text-4xl m-8 font-main text-white ">
         Choose your Battlefield:
       </h1>

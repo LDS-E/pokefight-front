@@ -199,7 +199,6 @@ const BattlePage = ({ battlefield }) => {
 
   return (
     <div className="bg-[url('images/BattleBg2.png')] bg-center bg-cover h-screen overflow-auto">
-      <NavBar />
       {isLoading ? (
         <img src={Loading} width={60} />
       ) : (

@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import NavBar from "../components/NavBar";
 
 const LeaderboardPage = () => {
   //  ranking data
@@ -7,7 +6,6 @@ const LeaderboardPage = () => {
 
   return (
     <div>
-      <NavBar />
       <div className="flex flex-col items-center">
         <h2 className="text-2xl font-bold mb-4">Player's Ranking</h2>
         <div className="w-1/2">

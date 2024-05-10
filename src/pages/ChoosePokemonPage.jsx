@@ -34,7 +34,6 @@ const ChoosePokemonPage = () => {
 
   return (
     <div>
-      <NavBar />
       <div className="flex justify-center items-center">
         <span className="type-normal">NORMAL</span> <br />
         <span className="type-fire">FIRE</span> <br />
