@@ -39,73 +39,73 @@ const leaderboardData = [
   {
     position: "🥈",
     nickname: "Misty",
-    pokemons: 3,
-    wins: 15,
-    loses: 10,
-    scores: 200,
+    pokemons: 428,
+    wins: 912,
+    loses: 17,
+    scores: 2897867,
   },
   {
     position: "🥉",
     nickname: "Brock",
-    pokemons: 3,
-    wins: 18,
-    loses: 7,
-    scores: 220,
+    pokemons: 397,
+    wins: 878,
+    loses: 29,
+    scores: 2365498,
   },
   {
     position: 4,
     nickname: "Gary",
-    pokemons: 3,
-    wins: 17,
-    loses: 8,
-    scores: 230,
+    pokemons: 265,
+    wins: 649,
+    loses: 87,
+    scores: 1967858,
   },
   {
     position: 5,
     nickname: "May",
-    pokemons: 3,
-    wins: 16,
-    loses: 9,
+    pokemons: 198,
+    wins: 513,
+    loses: 101,
     scores: 210,
   },
   {
     position: 6,
     nickname: "Dawn",
-    pokemons: 3,
-    wins: 14,
-    loses: 11,
+    pokemons: 141,
+    wins: 439,
+    loses: 147,
     scores: 190,
   },
   {
     position: 7,
     nickname: "Serena",
-    pokemons: 3,
-    wins: 13,
-    loses: 12,
+    pokemons: 117,
+    wins: 387,
+    loses: 188,
     scores: 180,
   },
   {
     position: 8,
     nickname: "Iris",
-    pokemons: 3,
-    wins: 12,
-    loses: 13,
+    pokemons: 98,
+    wins: 305,
+    loses: 201,
     scores: 170,
   },
   {
     position: 9,
     nickname: "Cynthia",
-    pokemons: 3,
-    wins: 11,
-    loses: 14,
+    pokemons: 81,
+    wins: 286,
+    loses: 227,
     scores: 160,
   },
   {
     position: 10,
-    nickname: "N",
-    pokemons: 3,
-    wins: 10,
-    loses: 15,
+    nickname: "Nikau",
+    pokemons: 75,
+    wins: 257,
+    loses: 278,
     scores: 150,
   },
 ];
@@ -138,12 +138,12 @@ const LeaderboardItem = ({ user }) => {
           <div className="text-lg text-gray-900 text-center"> {pokemons}</div>
         </td>
         <td className="px-6 py-4 whitespace-nowrap">
-          <span className="px-4 py-2 rounded-full bg-green-500 text-white">
+          <span className="px-4 py-2 rounded-full text-green-600">
             {wins} Wins
           </span>
         </td>
         <td className="px-6 py-4 whitespace-nowrap">
-          <span className="px-4 py-2 rounded-full bg-red-500 text-white">
+          <span className="px-4 py-2 rounded-full text-white">
             {loses} Loses
           </span>
         </td>
@@ -162,14 +162,14 @@ const LeaderboardPage = () => {
       <div className="container mx-auto mt-8">
         <div className="flex m-auto justify-center pb-6">
           <h1 className="text-4xl setfont font-extrabold text-center text-white mb-8">
-            Pokemon Leaderboard
+            Pokémon Leaderboard
           </h1>
           <p className="text-6xl">🏆</p>
         </div>
 
         <div className="bg-white/[.5] shadow-lg rounded-lg overflow-hidden">
           <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-800 text-white">
+            <thead className="bg-blue-500 text-white">
               <tr className="text-center">
                 <th
                   scope="col"
