@@ -113,14 +113,24 @@ const leaderboardData = [
 const LeaderboardItem = ({ user }) => {
   const { position, nickname, pokemons, wins, loses, scores } = user;
   let positionClassName = "text-lg";
+  let hoverclass = "";
 
   if (position === "🥇" || position === "🥈" || position === "🥉") {
-    positionClassName = "text-3xl ml-0"; // Adjust the font size according to your preference
+    positionClassName = "text-3xl ml-0 "; // Adjust the font size according to your preference
+    if (position === "🥇") {
+      hoverclass = "hover:bg-yellow-400";
+    } else if (position === "🥈") {
+      hoverclass = "hover:bg-gray-300";
+    } else if (position === "🥉") {
+      hoverclass = "hover:bg-amber-700";
+    } else {
+      hoverclass = "";
+    }
   }
 
   return (
     <>
-      <tr className="hover:bg-slate-200 text-center">
+      <tr className={`hover:bg-slate-200 text-center ${hoverclass}`}>
         <td className="px-6 py-4 whitespace-nowrap">
           <div
             className={`text-lg text-gray-900 flex items-center ml-4 ${positionClassName}`}
@@ -173,43 +183,43 @@ const LeaderboardPage = () => {
               <tr className="text-center">
                 <th
                   scope="col"
-                  className="px-6 pl-0 py-3 text-center setfont font-bold text-lg tracking-wider"
+                  className="px-6 pl-0 py-3 text-center font-secondary font-bold text-lg tracking-wider"
                 >
                   #
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 setfont text-center font-thin text-lg tracking-wider"
+                  className="px-6 py-3 font-secondary text-center font-thin text-lg tracking-wider"
                 >
                   Nickname
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 setfont text-center font-bold text-lg tracking-wider"
+                  className="px-6 py-3 font-secondary text-center font-bold text-lg tracking-wider"
                 >
                   Pokemons
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 setfont text-center font-bold text-lg tracking-wider"
+                  className="px-6 py-3 font-secondary text-center font-bold text-lg tracking-wider"
                 >
                   Wins
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 setfont text-center font-bold text-lg tracking-wider"
+                  className="px-6 py-3 font-secondary text-center font-bold text-lg tracking-wider"
                 >
                   Loses
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-center setfont font-bold text-lg tracking-wider"
+                  className="px-6 py-3 text-center font-secondary font-bold text-lg tracking-wider"
                 >
                   Scores
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y setfont divide-gray-200">
+            <tbody className="divide-y font-secondary divide-gray-200">
               {leaderboardData.map((user, index) => (
                 <LeaderboardItem key={index} user={user} />
               ))}
@@ -222,13 +232,13 @@ const LeaderboardPage = () => {
       <div className="m-auto items-center text-center pb-14">
         <Link
           to="/battle"
-          className="bg-white text-black py-1 px-6 rounded-md mr-4 hover:bg-yellow-500 setfont border-amber-500 border-solid border-4"
+          className="bg-white text-black py-1 px-6 rounded-md mr-4 hover:bg-yellow-500 font-secondary border-amber-500 border-solid border-4"
         >
           Start Battle
         </Link>
         <Link
           to="/choose-pokemon"
-          className="bg-white text-black py-1 px-6 rounded-md mr-4 hover:bg-blue-600 setfont border-blue-600 border-solid border-4"
+          className="bg-white text-black py-1 px-6 rounded-md mr-4 hover:bg-blue-600 font-secondary border-blue-600 border-solid border-4"
         >
           Choose Pokémon
         </Link>
