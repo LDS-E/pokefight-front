@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import NavBar from "../components/NavBar";
 
 const AboutPage = () => {
   return (
+
+
     <div className="bg-black min-h-screen">
       <NavBar />
       <div className="container mx-auto mt-8">
