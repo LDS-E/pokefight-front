@@ -23,7 +23,7 @@ const PokemonDetailCard = ({ pokemon, onClose, onSelect }) => {
       <div className="max-w-md w-full py-2 bg-white rounded-lg shadow-lg overflow-hidden">
         <div className="relative flex items-center justify-center">
           <img
-            src={pokemon.images.frontImg}
+            src={pokemon.images.imageUrl}
             alt={pokemon.name}
             className=" object-center w-32 h-32"
             style={{ maxWidth: "40%", maxHeight: "40%" }}
@@ -176,7 +176,7 @@ const PokemonDetailCard = ({ pokemon, onClose, onSelect }) => {
               </p>
             </div>
           </div>
-          <div className="flex justify-center mx-2  hover:text-gray-400 hover:bg-amber-300 ">
+          <div className="flex justify-center items-center mx-2 absolute inset-50 hover:text-gray-400 hover:bg-amber-300 ">
             <button
               className="bg-red-800  text-white font-bold py-2 px-4 rounded  hover:bg-black"
               onClick={handleSelectClick}

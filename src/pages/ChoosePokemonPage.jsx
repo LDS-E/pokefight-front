@@ -154,22 +154,6 @@ const ChoosePokemonPage = () => {
         />
       </div>
       {renderTypeButtons()}
-      <div className="flex flex-wrap justify-center">
-        {pokedex.map((pokemon) => (
-          <div
-            key={pokemon.id}
-            className="m-4 p-4 bg-gray-200 rounded-md cursor-pointer"
-            onClick={() => handlePokemonClick(pokemon)}
-          >
-            <img
-              src={pokemon.images.imageUrl}
-              alt={pokemon.name}
-              className="w-24 h-24 mb-2"
-            />
-            <p className="text-center">{pokemon.name}</p>
-          </div>
-        ))}
-      </div>
       <div className="flex justify-center mt-8">
         <button
           onClick={prevPage}
@@ -192,6 +176,22 @@ const ChoosePokemonPage = () => {
         >
           Next
         </button>
+      </div>
+      <div className="flex flex-wrap justify-center">
+        {pokedex.map((pokemon) => (
+          <div
+            key={pokemon.id}
+            className="m-4 p-4 bg-gray-200 rounded-md cursor-pointer transition duration-300 ease-in-out hover:bg-gray-500 hover:text-white"
+            onClick={() => handlePokemonClick(pokemon)}
+          >
+            <img
+              src={pokemon.images.imageUrl}
+              alt={pokemon.name}
+              className="w-24 h-24 mb-2"
+            />
+            <p className="text-center">{pokemon.name}</p>
+          </div>
+        ))}
       </div>
       {selectedPokemon && (
         <PokemonDetailCard
