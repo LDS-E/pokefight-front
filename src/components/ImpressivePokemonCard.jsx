@@ -1,4 +1,3 @@
-import React from "react";
 import PokemonStats from "./PokemonStats";
 
 const ImpressivePokemonCard = ({ pokemon, onClose, onSelect }) => {

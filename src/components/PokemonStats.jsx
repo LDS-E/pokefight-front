@@ -1,5 +1,3 @@
-import React from "react";
-
 const ProgressBar = ({ label, value, minValue, maxValue, color, border }) => {
   // Calcula a porcentagem do valor em relação ao mínimo e máximo
   const percentage = ((value - minValue) / (maxValue - minValue)) * 100;

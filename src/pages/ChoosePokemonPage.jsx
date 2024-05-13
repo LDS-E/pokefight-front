@@ -195,6 +195,7 @@ const ChoosePokemonPage = () => {
           </div>
         ))}
       </div>
+      <div className="flex justify-center mt-8">{renderPageButtons()}</div>
       {selectedPokemon && (
         <ImpressivePokemonCard
           pokemon={selectedPokemon}
