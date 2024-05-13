@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import PokemonDetailCard from "../components/PokemonDetailCard";
+import ImpressivePokemonCard from "../components/ImpressivePokemonCard";
 import "../index.css";
 
 const ChoosePokemonPage = () => {
@@ -195,7 +196,7 @@ const ChoosePokemonPage = () => {
         ))}
       </div>
       {selectedPokemon && (
-        <PokemonDetailCard
+        <ImpressivePokemonCard
           pokemon={selectedPokemon}
           onClose={handleCloseDetailCard}
           onSelect={handleSelect}
