@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import NavBar from "../components/NavBar";
 import PokemonDetailCard from "../components/PokemonDetailCard";
 import "../index.css";
 
@@ -36,18 +35,6 @@ const ChoosePokemonPage = () => {
 
     fetchData();
   }, [page, searchTerm, selectedTypes]);
-
-  const nextPage = () => {
-    if (page < totalPages) {
-      setPage((prevPage) => prevPage + 1);
-    }
-  };
-
-  const prevPage = () => {
-    if (page > 1) {
-      setPage((prevPage) => prevPage - 1);
-    }
-  };
 
   const goToPage = (pageNumber) => {
     setPage(pageNumber);
@@ -104,9 +91,31 @@ const ChoosePokemonPage = () => {
 
   const renderPageButtons = () => {
     const pages = [];
-    const startPage = Math.max(1, page - 3);
-    const endPage = Math.min(totalPages, page + 3);
 
+    // Adiciona o botão "First Page" se não estiver na primeira página
+    if (page > 1) {
+      pages.push(
+        <button
+          key={"first"}
+          onClick={() => goToPage(1)}
+          className="btn bg-red-600 text-white font-secondary py-2 px-4 rounded-md mr-2 hover:bg-red-800"
+          style={{ minWidth: "2.5rem" }} // Definindo um tamanho fixo para os botões
+        >
+          {"First Page"}
+        </button>
+      );
+    }
+
+    // Calcula o início e o fim da seção central dos botões
+    let startPage = Math.max(1, page - 1);
+    let endPage = Math.min(totalPages, startPage + 2);
+
+    // Se a página atual estiver perto do final, ajusta o início e o fim para manter 3 botões no centro
+    if (endPage === totalPages) {
+      startPage = Math.max(1, endPage - 2);
+    }
+
+    // Adiciona os botões da seção central
     for (let i = startPage; i <= endPage; i++) {
       pages.push(
         <button
@@ -114,11 +123,26 @@ const ChoosePokemonPage = () => {
           onClick={() => goToPage(i)}
           className={`${
             i === page
-              ? "bg-blue-500 text-white py-2 px-4 rounded-md mr-2 hover:bg-blue-600"
-              : "bg-gray-300 text-gray-600 py-2 px-4 rounded-md mr-2 hover:bg-gray-400"
+              ? "btn bg-red-600 text-white font-secondary py-2 px-4 rounded-md mr-2 hover:bg-red-800"
+              : "btn bg-red-600 text-white font-secondary py-2 px-4 rounded-md mr-2 hover:bg-red-800"
           }`}
+          style={{ minWidth: "3.5rem" }} // Definindo um tamanho fixo para os botões
         >
           {i}
+        </button>
+      );
+    }
+
+    // Adiciona o botão "Last Page" se não estiver na última página
+    if (page < totalPages) {
+      pages.push(
+        <button
+          key={"last"}
+          onClick={() => goToPage(totalPages)}
+          className="btn bg-red-600 text-white font-secondary py-2 px-4 rounded-md mr-2 hover:bg-red-800"
+          style={{ minWidth: "3.5rem" }} // Definindo um tamanho fixo para os botões
+        >
+          {"Last Page"}
         </button>
       );
     }
@@ -143,45 +167,22 @@ const ChoosePokemonPage = () => {
 
   return (
     <div className="bg-black min-h-screen">
-      <NavBar />
-      <div className="flex justify-center mt-8">
+      <div className="flex justify-center pt-4">
         <input
           type="text"
           value={searchTerm}
           onChange={handleSearchChange}
           placeholder="Search Pokémon..."
-          className="border border-gray-300 rounded-md px-4 py-2 mr-4"
+          className="border font-secondary border-gray-300 rounded-md px-2 py-2 mr-4"
         />
       </div>
       {renderTypeButtons()}
-      <div className="flex justify-center mt-8">
-        <button
-          onClick={prevPage}
-          className={`${
-            page === 1
-              ? "bg-gray-300 text-gray-600 py-2 px-4 rounded-md mr-4 hover:bg-gray-400"
-              : "bg-blue-500 text-white py-2 px-4 rounded-md mr-4 hover:bg-blue-600"
-          }`}
-        >
-          Previous
-        </button>
-        {renderPageButtons()}
-        <button
-          onClick={nextPage}
-          className={`${
-            page === totalPages
-              ? "bg-gray-300 text-gray-600 py-2 px-4 rounded-md hover:bg-gray-400"
-              : "bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
-          }`}
-        >
-          Next
-        </button>
-      </div>
+      <div className="flex justify-center mt-8">{renderPageButtons()}</div>
       <div className="flex flex-wrap justify-center">
         {pokedex.map((pokemon) => (
           <div
             key={pokemon.id}
-            className="m-4 p-4 bg-gray-200 rounded-md cursor-pointer transition duration-300 ease-in-out hover:bg-gray-500 hover:text-white"
+            className="m-4 p-4 bg-gray-200 rounded-md cursor-pointer transition duration-500 ease-in-out hover:bg-gray-500 hover:text-white "
             onClick={() => handlePokemonClick(pokemon)}
           >
             <img
@@ -189,7 +190,7 @@ const ChoosePokemonPage = () => {
               alt={pokemon.name}
               className="w-24 h-24 mb-2"
             />
-            <p className="text-center">{pokemon.name}</p>
+            <p className="text-center font-extrabold">{pokemon.name}</p>
           </div>
         ))}
       </div>

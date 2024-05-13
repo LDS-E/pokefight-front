@@ -10,7 +10,7 @@ const LandingPage = () => {
         <h1 className="text-4xl font-bold mb-4 font-main text-yellow-500 [text-shadow:_5px_-1px_2px_rgba(24,69,129,1)]">
           Welcome to PokéFight!
         </h1>
-        <h1 className="text-4xl font-bold mb-4 font-secondary text-white text-yellow-500 [text-shadow:_5px_-1px_2px_rgba(24,69,129,1)]">
+        <h1 className="text-4xl font-bold mb-4 font-secondary text-yellow-500 [text-shadow:_5px_-1px_2px_rgba(24,69,129,1)]">
           Welcome to Pokémon Journey!
         </h1>
         <div className="relative">
