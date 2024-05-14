@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import LandingPage from "./pages/LandingPage";
 import ChoosePokemonPage from "./pages/ChoosePokemonPage";
