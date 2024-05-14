@@ -11,12 +11,17 @@ import NavBar from "./components/NavBar";
 
 const App = () => {
   const [battlefield, setBattlefied] = useState("");
+  const [user, setUser] = useState("");
 
   return (
     <div>
       <NavBar />
       <Routes>
-        <Route path="/" exact element={<LandingPage />} />
+        <Route
+          path="/"
+          exact
+          element={<LandingPage user={user} setUser={setUser} />}
+        />
         <Route path="/choose-pokemon" element={<ChoosePokemonPage />} />
         <Route
           path="/choose-battle-field"
