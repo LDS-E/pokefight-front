@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Loading from "../public/images/Loading.gif";
+import Loading from "./images/Loading.gif";
 import { Link } from "react-router-dom";
 import "animate.css";
 const BattlePage = ({
