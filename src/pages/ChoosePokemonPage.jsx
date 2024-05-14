@@ -111,16 +111,13 @@ const ChoosePokemonPage = () => {
       );
     }
 
-    // Calcula of central section of pagination btn
     let startPage = Math.max(1, page - 1);
     let endPage = Math.min(totalPages, startPage + 2);
 
-    // Se a página atual estiver perto do final, ajusta o início e o fim para manter 3 botões no centro
     if (endPage === totalPages) {
       startPage = Math.max(1, endPage - 2);
     }
 
-    // Adiciona os botões da seção central
     for (let i = startPage; i <= endPage; i++) {
       pages.push(
         <button
@@ -138,7 +135,7 @@ const ChoosePokemonPage = () => {
       );
     }
 
-    // Adiciona o botão "Last Page" se não estiver na última página
+    //
     if (page < totalPages) {
       pages.push(
         <button
@@ -164,9 +161,9 @@ const ChoosePokemonPage = () => {
   };
 
   const handleSelect = (selectedPokemon) => {
-    // Aqui você pode fazer o que for necessário com o Pokémon selecionado
-    console.log("Pokemon selecionado:", selectedPokemon);
-    // Por exemplo, você pode querer atualizar o estado com o Pokémon selecionado
+    // here we can make anythng with the pokemon
+    console.log("Pokemon selected:", selectedPokemon);
+    // Here we can uptade thepokemon
     setSelectedPokemon(selectedPokemon);
   };
 

@@ -9,7 +9,6 @@ const NavBar = () => {
         </Link>
         <div className="hidden md:flex">
           {" "}
-          {/* Oculta em telas menores que médio */}
           <Link to="/choose-pokemon" className="mx-4">
             Choose Pokémon
           </Link>
