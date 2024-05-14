@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const AboutPage = () => {
   return (
-    <div className="bg-black min-h-screen pt-24">
+    <div className="bg-[#221F1F] min-h-screen pt-24">
       <div className="container pt-4 mx-auto">
         <h2 className="text-2xl font-main mb-4 text-yellow-500">
           About PokéFight
@@ -15,14 +15,14 @@ const AboutPage = () => {
           Here's a step-by-step guide to get you started:
         </p>
         <h2 className="text-xl font-main mt-6 mb-2 text-yellow-500">
-          Step 1: Register and Choose Your Pokémon
+          Step 1: Register, Choose Your and opponent Pokémon
         </h2>
         <p className="text-white font-secondary">
-          On the landing page, enter your desired nickname and click "Start Your
-          Pokémon Journey" to begin.
+          On the landing page, enter your desired nickname and click "Start
+          Journey" to begin.
         </p>
         <p className="text-white font-secondary">
-          Explore the Pokédex to select your starting Pokémon. Click on a
+          Explore the Pokédex, select your and opponent Pokémon. Click on a
           Pokémon to view detailed information.
         </p>
         <h2 className="text-xl font-main mt-6 mb-2 text-yellow-500">

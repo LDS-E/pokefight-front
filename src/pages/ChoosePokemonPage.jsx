@@ -1,17 +1,26 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import PokemonDetailCard from "../components/PokemonDetailCard";
 import ImpressivePokemonCard from "../components/ImpressivePokemonCard";
 
-const ChoosePokemonPage = () => {
+const ChoosePokemonPage = ({
+  pokemon,
+  setSelectedPokemon,
+  opponentPokemon,
+  setOpponentPokemon,
+  playerPokemon,
+  setPlayerPokemon,
+}) => {
   const [pokedex, setPokedex] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedPokemon, setSelectedPokemon] = useState(null);
+  // const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [isLoading, setIsLoading] = useState(false); //  variable of state to control loading
-  const limit = 50;
+  const limit = 25;
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -157,10 +166,11 @@ const ChoosePokemonPage = () => {
 
   const handlePokemonClick = (pokemon) => {
     setSelectedPokemon(pokemon);
+    setIsOpen(true);
   };
 
   const handleCloseDetailCard = () => {
-    setSelectedPokemon(null);
+    setIsOpen(false);
   };
 
   const handleSelect = (selectedPokemon) => {
@@ -169,11 +179,18 @@ const ChoosePokemonPage = () => {
     // Por exemplo, você pode querer atualizar o estado com o Pokémon selecionado
     setSelectedPokemon(selectedPokemon);
   };
+  //* Handle Select opp
+  const handleSelectOpponent = (selectedPokemon) => {
+    // Aqui você pode fazer o que for necessário com o Pokémon selecionado
+    console.log("Pokemon selecionado:", selectedPokemon);
+    // Por exemplo, você pode querer atualizar o estado com o Pokémon selecionado
+    setOpponentPokemon(selectedPokemon);
+  };
 
   return (
     <div
       className={`bg-[url('/images/Newbattlefield.png')] bg-center bg-cover ${
-        isLoading ? "h-screen" : "h-full"
+        isLoading ? "min-h-screen" : "min-h-screen"
       } pt-24`}
     >
       <div className="flex justify-center pt-4">
@@ -185,8 +202,26 @@ const ChoosePokemonPage = () => {
           className="border font-secondary border-gray-300 rounded-md px-2 py-2 mr-4"
         />
       </div>
-      {renderTypeButtons()}
-      <div className="flex justify-center mt-8">{renderPageButtons()}</div>
+      {/* {renderTypeButtons()} */}
+      {playerPokemon && opponentPokemon ? (
+        <Link
+          to="/choose-battle-field"
+          className="flex  justify-center items-center"
+        >
+          <button
+            className={`${
+              playerPokemon && opponentPokemon
+                ? "btn bg-red-600 text-white font-secondary hover:bg-red-800 mt-6 "
+                : "hidden"
+            }`}
+          >
+            Choose battlefield
+          </button>
+        </Link>
+      ) : (
+        <div className="flex justify-center mt-8">{renderPageButtons()}</div>
+      )}
+
       <div className="flex flex-wrap justify-center">
         {pokedex.map((pokemon) => (
           <div
@@ -216,13 +251,18 @@ const ChoosePokemonPage = () => {
           {/* Tamanho do texto responsivo */}
         </div>
       )}
-      <div className="flex justify-center mt-8">{renderPageButtons()}</div>
+      <div className="flex justify-center mt-8">{renderPageButtons()} </div>
 
-      {selectedPokemon && (
+      {isOpen && (
         <ImpressivePokemonCard
-          pokemon={selectedPokemon}
+          pokemon={pokemon}
+          opponentPokemon={opponentPokemon}
+          setOpponentPokemon={setOpponentPokemon}
+          playerPokemon={playerPokemon}
+          setPlayerPokemon={setPlayerPokemon}
           onClose={handleCloseDetailCard}
           onSelect={handleSelect}
+          onSelectOpp={handleSelectOpponent}
         />
       )}
     </div>

@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import Loading from "../public/images/Loading.gif";
-import axios from "axios";
-
+import { Link } from "react-router-dom";
 import "animate.css";
-const BattlePage = ({ battlefield }) => {
-  const flygon = "https://pokefight-backend-9t63.onrender.com/api/pokemons/1";
-  const azumarill =
-    "https://pokefight-backend-9t63.onrender.com/api/pokemons/376";
-  const [playerPokemon, setPlayerPokemon] = useState(null);
-  const [oppPokemon, setOppPokemon] = useState(null);
+const BattlePage = ({
+  battlefield,
+  pokemon,
+  opponentPokemon,
+  playerPokemon,
+}) => {
+  console.log(pokemon);
+
   const [isLoading, setIsLoading] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [isWinning, setIsWinning] = useState(false);
@@ -52,64 +53,67 @@ const BattlePage = ({ battlefield }) => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        const flygonResponse = await axios.get(flygon);
-        setOppPokemon(flygonResponse.data);
-        const azumarillResponse = await axios.get(azumarill);
-        setPlayerPokemon(azumarillResponse.data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchData();
+    // const fetchData = async () => {
+    //   try {
+    //     setIsLoading(true);
+    //     const flygonResponse = await axios.get(flygon);
+    //     setOppPokemon(flygonResponse.data);
+    //     const azumarillResponse = await axios.get(azumarill);
+    //     setPlayerPokemon(azumarillResponse.data);
+    //   } catch (error) {
+    //     console.log(error);
+    //   } finally {
+    //     setIsLoading(false);
+    //   }
+    // };
+    // fetchData();
     getRandomBackground();
   }, []);
 
   //* Fighting logic
 
   const fight = () => {
-    if (oppPokemon?.base.Attack >= playerPokemon?.base.Defense * 2) {
+    if (opponentPokemon?.base.Attack >= playerPokemon?.base.Defense * 2) {
       setIsLosing(true);
       return (
         <p className="winnerPoke animate__animated animate__fadeInUpBig">
-          {oppPokemon.name} is too strong for {playerPokemon.name}. It is an
-          OHKO.
+          {opponentPokemon.name} is too strong for {playerPokemon.name}. It is
+          an OHKO.
         </p>
       );
-    } else if (playerPokemon?.base.Attack >= oppPokemon?.base.Defense * 2) {
+    } else if (
+      playerPokemon?.base.Attack >=
+      opponentPokemon?.base.Defense * 2
+    ) {
       setIsWinning(true);
       return (
         <p className="winnerPoke animate__animated animate__fadeInUpBig">
-          {playerPokemon.name} is too strong for {oppPokemon.name}. It is an
-          OHKO.
+          {playerPokemon.name} is too strong for {opponentPokemon.name}. It is
+          an OHKO.
         </p>
       );
-    } else if (oppPokemon?.base.Attack >= playerPokemon?.base.Defense) {
+    } else if (opponentPokemon?.base.Attack >= playerPokemon?.base.Defense) {
       setIsLosing(true);
       return (
         <p className="winnerPoke animate__animated animate__fadeInUpBig">
-          The battle was close but {oppPokemon.name} is the winner.
+          The battle was close but {opponentPokemon.name} is the winner.
         </p>
       );
-    } else if (playerPokemon?.base.Attack >= oppPokemon?.base.Defense) {
+    } else if (playerPokemon?.base.Attack >= opponentPokemon?.base.Defense) {
       setIsWinning(true);
       return (
         <p className="winnerPoke animate__animated animate__fadeInUpBig">
           The battle was close but {playerPokemon?.name} is the winner.
         </p>
       );
-    } else if (oppPokemon?.base.HP >= playerPokemon?.base.HP) {
+    } else if (opponentPokemon?.base.HP >= playerPokemon?.base.HP) {
       setIsLosing(true);
       return (
         <p className="winnerPoke animate__animated animate__fadeInUpBig">
-          The battle was close but {oppPokemon.name} is the winner.
+          The battle was close but {opponentPokemon.name} is the winner.
         </p>
       );
-    } else if (playerPokemon?.base.HP >= oppPokemon?.base.HP) {
+    } else if (playerPokemon?.base.HP >= opponentPokemon?.base.HP) {
       setIsWinning(true);
       return (
         <p className="winnerPoke animate__animated animate__fadeInUpBig">
@@ -128,20 +132,21 @@ const BattlePage = ({ battlefield }) => {
 
   //** Faster pokemon
   const fasterPokemon = () => {
-    if (playerPokemon?.base.Speed > oppPokemon?.base.Speed) {
+    if (playerPokemon?.base.Speed > opponentPokemon?.base.Speed) {
       return (
         <p className="fasterPoke animate__animated animate__fadeInDown">
           It seems that your {playerPokemon?.name} is faster than enemy{" "}
-          {oppPokemon?.name}. <br />
+          {opponentPokemon?.name}. <br />
           {playerPokemon?.name} will attack first!
         </p>
       );
     }
-    if (oppPokemon?.base.Speed > playerPokemon?.base.Speed) {
+    if (opponentPokemon?.base.Speed > playerPokemon?.base.Speed) {
       return (
         <p className="fasterPoke animate__animated animate__fadeInDown">
-          It seems that enemy {oppPokemon?.name} is faster than your{" "}
-          {playerPokemon?.name}. <br /> {oppPokemon?.name} will attack first!
+          It seems that enemy {opponentPokemon?.name} is faster than your{" "}
+          {playerPokemon?.name}. <br /> {opponentPokemon?.name} will attack
+          first!
         </p>
       );
     }
@@ -150,8 +155,8 @@ const BattlePage = ({ battlefield }) => {
   //*Battle Log Attacking order
   const attackingOrder = () => {
     if (
-      playerPokemon?.base.Speed > oppPokemon?.base.Speed &&
-      playerPokemon?.base.Attack >= oppPokemon?.base.Defense * 2
+      playerPokemon?.base.Speed > opponentPokemon?.base.Speed &&
+      playerPokemon?.base.Attack >= opponentPokemon?.base.Defense * 2
     ) {
       return (
         <div className="orderContainer">
@@ -162,26 +167,26 @@ const BattlePage = ({ battlefield }) => {
       );
     }
     if (
-      oppPokemon?.base.Speed > playerPokemon?.base.Speed &&
-      oppPokemon?.base.Attack >= playerPokemon?.base.Defense * 2
+      opponentPokemon?.base.Speed > playerPokemon?.base.Speed &&
+      opponentPokemon?.base.Attack >= playerPokemon?.base.Defense * 2
     ) {
       return (
         <div className="orderContainer">
           <p className="orderPoke animate__animated  animate__bounceInRight">
-            {oppPokemon?.name} starts attacking,
+            {opponentPokemon?.name} starts attacking,
           </p>
         </div>
       );
     }
 
-    if (playerPokemon?.base.Speed > oppPokemon?.base.Speed) {
+    if (playerPokemon?.base.Speed > opponentPokemon?.base.Speed) {
       return (
         <div className="orderContainer">
           <p className="orderPoke animate__animated  animate__bounceInRight">
             {playerPokemon?.name} starts attacking,
           </p>
           <p className="orderPoke animate__animated  animate__bounceInLeft">
-            {oppPokemon?.name} fight back with his own attack,
+            {opponentPokemon?.name} fight back with his own attack,
           </p>
           <p className="orderPoke animate__animated  animate__backInUp">
             The Pokemons keep fighting for a while.
@@ -189,11 +194,11 @@ const BattlePage = ({ battlefield }) => {
         </div>
       );
     }
-    if (oppPokemon?.base.Speed > playerPokemon?.base.Speed) {
+    if (opponentPokemon?.base.Speed > playerPokemon?.base.Speed) {
       return (
         <div>
           <p className="orderPoke animate__animated animate__bounceInRight">
-            {oppPokemon?.name} starts attacking,
+            {opponentPokemon?.name} starts attacking,
           </p>
           <p className="orderPoke animate__animated animate__bounceInLeft">
             {playerPokemon?.name} fight back with his own attack,
@@ -232,17 +237,17 @@ const BattlePage = ({ battlefield }) => {
     }, 4000);
 
     //*Reset all back
-    const resetTimeout = setTimeout(() => {
-      setIsWinning(false);
-      setIsLosing(false);
-      setIsDisabled(false);
-    }, 7000);
+    // const resetTimeout = setTimeout(() => {
+    //   setIsWinning(false);
+    //   setIsLosing(false);
+    //   setIsDisabled(false);
+    // }, 7000);
 
     return () => {
       clearTimeout(fasterTimeout);
       clearTimeout(orderTimeout);
       clearTimeout(resultTimout);
-      clearTimeout(resetTimeout);
+      // clearTimeout(resetTimeout);
     };
   };
 
@@ -321,30 +326,32 @@ const BattlePage = ({ battlefield }) => {
                 </div>
               )}
               <img
-                src={oppPokemon.images.frontImg}
-                className={`oppPokemon ${
+                src={opponentPokemon.images.frontImg}
+                className={`opponentPokemon ${
                   isDisabled && "animate__animated animate__shakeX"
                 }`}
               />
               {isWinning ? (
                 <div className="oppPokemonHp">
                   <p className="opacity-50 font-secondary tracking-wider">
-                    {oppPokemon.name}
+                    {opponentPokemon.name}
                   </p>
                   <div className="h-2 my-2 border-2 border-red-600 opacity-50"></div>
                   <div className="flex justify-center items-center gap-4 opacity-50 ">
                     <p
-                      className={`uppercase ${typesStyle[oppPokemon.type[0]]}`}
+                      className={`uppercase ${
+                        typesStyle[opponentPokemon.type[0]]
+                      }`}
                     >
-                      {oppPokemon.type[0]}
+                      {opponentPokemon.type[0]}
                     </p>
-                    {oppPokemon.type[1] && (
+                    {opponentPokemon.type[1] && (
                       <p
                         className={`uppercase ${
-                          typesStyle[oppPokemon.type[1]]
+                          typesStyle[opponentPokemon.type[1]]
                         }`}
                       >
-                        {oppPokemon.type[1]}
+                        {opponentPokemon.type[1]}
                       </p>
                     )}
                   </div>
@@ -352,23 +359,25 @@ const BattlePage = ({ battlefield }) => {
               ) : (
                 <div className="oppPokemonHp">
                   <p className="font-secondary tracking-wider">
-                    {oppPokemon.name}
+                    {opponentPokemon.name}
                   </p>
 
                   <div className="h-2 my-2 bg-green-600"></div>
                   <div className="flex justify-center items-center gap-4  ">
                     <p
-                      className={`uppercase ${typesStyle[oppPokemon.type[0]]}`}
+                      className={`uppercase ${
+                        typesStyle[opponentPokemon.type[0]]
+                      }`}
                     >
-                      {oppPokemon.type[0]}
+                      {opponentPokemon.type[0]}
                     </p>
-                    {oppPokemon.type[1] && (
+                    {opponentPokemon.type[1] && (
                       <p
                         className={`uppercase ${
-                          typesStyle[oppPokemon.type[1]]
+                          typesStyle[opponentPokemon.type[1]]
                         }`}
                       >
-                        {oppPokemon.type[1]}
+                        {opponentPokemon.type[1]}
                       </p>
                     )}
                   </div>
@@ -394,15 +403,21 @@ const BattlePage = ({ battlefield }) => {
                 </div>
                 <div className="self-center">VS</div>
                 <div className="flex flex-col items-center justify-around m-4 gap-0.5">
-                  <p className="">{oppPokemon.name}</p>
-                  <p className={`uppercase ${typesStyle[oppPokemon.type[0]]}`}>
-                    {oppPokemon.type[0]}
+                  <p className="">{opponentPokemon.name}</p>
+                  <p
+                    className={`uppercase ${
+                      typesStyle[opponentPokemon.type[0]]
+                    }`}
+                  >
+                    {opponentPokemon.type[0]}
                   </p>
-                  {oppPokemon.type[1] && (
+                  {opponentPokemon.type[1] && (
                     <p
-                      className={`uppercase ${typesStyle[oppPokemon.type[1]]}`}
+                      className={`uppercase ${
+                        typesStyle[opponentPokemon.type[1]]
+                      }`}
                     >
-                      {oppPokemon.type[1]}
+                      {opponentPokemon.type[1]}
                     </p>
                   )}
                 </div>
@@ -412,22 +427,54 @@ const BattlePage = ({ battlefield }) => {
           <button
             onClick={handleStartFight}
             disabled={isDisabled}
-            className="btn bg-red-600 hover:bg-red-800 text-white mt-4 mx-auto disabled:bg-red-300 disabled:text-black font-secondary"
+            className="btn bg-red-600 hover:bg-red-800 text-white mt-4 mx-auto disabled:hidden disabled:text-black font-secondary"
           >
             Start fight
           </button>
 
           {isWinning ? (
-            <h1 className="animate__animated animate__fadeInDownBig announcerText ">
-              Congratulation, you won!
-            </h1>
+            <div className="animate__animated animate__fadeInDownBig announcerText">
+              <p className="m-4 [text-shadow:_3px_3px_0px_rgba(0,0,0,0.6)]">
+                Congratulations, <br /> you won!
+              </p>
+              <div className="flex gap-4 justify-center items-center">
+                <Link
+                  to="/leaderboard"
+                  className="btn  bg-yellow-500 hover:bg-yellow-100 text-black"
+                >
+                  Leaderboard
+                </Link>
+                <Link
+                  to="/choose-pokemon"
+                  className="btn  bg-blue-600 text-white hover:bg-blue-800"
+                >
+                  Play again
+                </Link>
+              </div>
+            </div>
           ) : (
             ""
           )}
           {isLosing ? (
-            <h1 className="animate__animated animate__fadeInDownBig announcerText">
-              You lost!
-            </h1>
+            <div className="animate__animated animate__fadeInDownBig announcerText">
+              <p className="m-4 [text-shadow:_3px_3px_0px_rgba(0,0,0,0.6)]">
+                You lost!
+              </p>
+              <div className="flex gap-4 justify-center items-center">
+                <Link
+                  to="/leaderboard"
+                  className="btn  bg-yellow-500 hover:bg-yellow-100 text-black"
+                >
+                  Leaderboard
+                </Link>
+                <Link
+                  to="/choose-pokemon"
+                  className="btn  bg-blue-600 text-white hover:bg-blue-800"
+                >
+                  Retry
+                </Link>
+              </div>
+            </div>
           ) : (
             ""
           )}

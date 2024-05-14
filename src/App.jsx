@@ -12,7 +12,9 @@ import NavBar from "./components/NavBar";
 const App = () => {
   const [battlefield, setBattlefied] = useState("");
   const [user, setUser] = useState("");
-
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [playerPokemon, setPlayerPokemon] = useState(null);
+  const [opponentPokemon, setOpponentPokemon] = useState(null);
   return (
     <div>
       <NavBar />
@@ -22,14 +24,33 @@ const App = () => {
           exact
           element={<LandingPage user={user} setUser={setUser} />}
         />
-        <Route path="/choose-pokemon" element={<ChoosePokemonPage />} />
+        <Route
+          path="/choose-pokemon"
+          element={
+            <ChoosePokemonPage
+              pokemon={selectedPokemon}
+              setSelectedPokemon={setSelectedPokemon}
+              opponentPokemon={opponentPokemon}
+              setOpponentPokemon={setOpponentPokemon}
+              playerPokemon={playerPokemon}
+              setPlayerPokemon={setPlayerPokemon}
+            />
+          }
+        />
         <Route
           path="/choose-battle-field"
           element={<ChooseBattleFieldPage setBattlefied={setBattlefied} />}
         />
         <Route
           path="/battle"
-          element={<BattlePage battlefield={battlefield} />}
+          element={
+            <BattlePage
+              battlefield={battlefield}
+              pokemon={selectedPokemon}
+              opponentPokemon={opponentPokemon}
+              playerPokemon={playerPokemon}
+            />
+          }
         />
         <Route path="/leaderboard" element={<LeaderboardPage />} />
         <Route path="/about" element={<AboutPage />} />

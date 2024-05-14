@@ -7,7 +7,7 @@ const ChooseBattleFieldPage = ({ setBattlefied }) => {
   console.log(forestWeather);
   const [oceanWeather, setOceanWeather] = useState("/images/Ocean_day.webp");
   return (
-    <div className="bg-[url('/images/Newbattlefield.png')] bg-no-repeat bg-cover  bg-center flex flex-col sm:h-screen">
+    <div className="bg-[url('/images/Newbattlefield.png')] bg-no-repeat bg-cover  bg-center flex flex-col min-h-screen">
       <h1 className="text-center text-4xl m-8 font-main text-white ">
         Choose your Battlefield:
       </h1>

@@ -1,9 +1,31 @@
 import React from "react";
 import PokemonStats from "./PokemonStats";
 
-const ImpressivePokemonCard = ({ pokemon, onClose, onSelect }) => {
-  const handleSelectClick = () => {
-    onSelect(pokemon);
+const ImpressivePokemonCard = ({
+  pokemon,
+  onClose,
+  onSelect,
+  onSelectOpp,
+  opponentPokemon,
+  setOpponentPokemon,
+  playerPokemon,
+  setPlayerPokemon,
+}) => {
+  // const handleSelectClick = () => {
+  //   onSelect(pokemon);
+  //   onClose();
+  // };
+  // const handleOppClick = () => {
+  //   onSelectOpp(opponentPokemon);
+  //   onClose();
+  // };
+
+  const handlePlayerPokemon = () => {
+    setPlayerPokemon(pokemon);
+    onClose();
+  };
+  const handleOppoentPokemon = () => {
+    setOpponentPokemon(pokemon);
     onClose();
   };
 
@@ -23,43 +45,43 @@ const ImpressivePokemonCard = ({ pokemon, onClose, onSelect }) => {
             {pokemon.type.map((type) => (
               <div
                 key={type}
-                className={`mr-2 py-1 px-3 rounded-lg text-white font-secondary ${
+                className={`mx-2 uppercase ${
                   type === "Normal"
-                    ? "bg-gray-400"
+                    ? "type-normal "
                     : type === "Fire"
-                    ? "bg-red-500"
+                    ? "type-fire"
                     : type === "Water"
-                    ? "bg-blue-500"
+                    ? "type-water "
                     : type === "Grass"
-                    ? "bg-green-500"
+                    ? "type-grass "
                     : type === "Electric"
-                    ? "bg-yellow-400"
+                    ? "type-electric"
                     : type === "Ice"
-                    ? "bg-blue-200"
+                    ? "type-ice"
                     : type === "Fighting"
-                    ? "bg-red-700"
+                    ? "type-fighting"
                     : type === "Poison"
-                    ? "bg-purple-600"
+                    ? "type-poison"
                     : type === "Ground"
-                    ? "bg-yellow-800"
+                    ? "type-ground"
                     : type === "Flying"
-                    ? "bg-blue-300"
+                    ? "type-flying"
                     : type === "Psychic"
-                    ? "bg-pink-500"
+                    ? "type-psychic"
                     : type === "Bug"
-                    ? "bg-green-700"
+                    ? "type-bug"
                     : type === "Rock"
-                    ? "bg-gray-600"
+                    ? "type-rock"
                     : type === "Ghost"
-                    ? "bg-purple-700"
+                    ? "type-ghost"
                     : type === "Dragon"
-                    ? "bg-indigo-600"
+                    ? "type-dragon"
                     : type === "Dark"
-                    ? "bg-black"
+                    ? "type-dark"
                     : type === "Steel"
-                    ? "bg-gray-500"
+                    ? "type-steel"
                     : type === "Fairy"
-                    ? "bg-pink-300"
+                    ? "type-fairy "
                     : ""
                 }`}
               >
@@ -72,10 +94,16 @@ const ImpressivePokemonCard = ({ pokemon, onClose, onSelect }) => {
       </div>
       <div className="px-6 pt-4 pb-2 flex flex-col">
         <button
-          className="btn bg-red-600 text-white font-secondary hover:bg-red-800 py-2 px-4 mb-4"
-          onClick={handleSelectClick}
+          className="btn bg-red-600 text-white font-secondary hover:bg-white py-2 px-4 mb-4 hover:text-red-600"
+          onClick={handlePlayerPokemon}
         >
           Select Pokémon
+        </button>
+        <button
+          className="btn bg-white text-red-600 font-secondary hover:bg-red-600 hover:text-white py-2 px-4 mb-4 border border-red-600"
+          onClick={handleOppoentPokemon}
+        >
+          Select opponent Pokémon
         </button>
         <button
           className="btn bg-blue-600 text-white font-secondary hover:bg-blue-800 py-2 px-4"

@@ -5,7 +5,7 @@
 @layer components {
   /* Types Style */
   .type-normal {
-    @apply bg-[#aa9] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)] shadow-[2px_2px_0px_0px_rgba(0,0,0,.40)];
+    @apply bg-[#aa9] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)]  shadow-[2px_2px_0px_0px_rgba(0,0,0,.40)];
   }
   .type-fire {
     @apply bg-[#f42] rounded-[4px] inline-block text-white w-[66px] text-center text-[.75rem] leading-6 [text-shadow:1px_1px_2px_rgba(0,0,0,.7)] shadow-[2px_2px_0px_0px_rgba(0,0,0,.40)];
@@ -103,7 +103,7 @@
 .playerPokemon {
   @apply absolute bottom-32 left-2 h-20 w-20 sm:bottom-8 sm:left-16 sm:h-28 sm:w-28 lg:bottom-14 lg:left-32 lg:w-32 lg:h-40;
 }
-.oppPokemon {
+.opponentPokemon {
   @apply absolute top-0 right-8 h-20 w-20 sm:h-28 sm:top-12 sm:right-20 sm:w-28 lg:top-32 lg:right-44 lg:w-32 lg:h-40;
 }
 .playerPokemonHp {
@@ -116,5 +116,5 @@
   @apply text-white font-secondary mt-16 flex flex-col justify-center items-center overflow-hidden bg-zinc-900/80 sm:w-[600px] mx-auto rounded-xl p-4 gap-2;
 }
 .announcerText {
-  @apply absolute md:text-6xl shadow-[0_0_0_10000px_rgba(0,0,0,.40)] bg-[#00000066] [text-shadow:_3px_3px_0px_rgba(0,0,0,0.6)] text-white  font-secondary;
+  @apply absolute md:text-6xl shadow-[0_0_0_10000px_rgba(0,0,0,.40)] bg-[#00000066]  text-white  font-secondary;
 }
