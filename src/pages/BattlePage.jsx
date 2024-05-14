@@ -40,10 +40,10 @@ const BattlePage = ({
   };
 
   const randomBackground = [
-    "bg-[url('images/BattleBg1.png')]",
-    "bg-[url('images/BattleBg2.png')]",
-    "bg-[url('images/BattleBg3.png')]",
-    "bg-[url('images/BattleBg4.png')]",
+    "bg-[url('/images/BattleBg1.png')]",
+    "bg-[url('/images/BattleBg2.png')]",
+    "bg-[url('/images/BattleBg3.png')]",
+    "bg-[url('/images/BattleBg4.png')]",
   ];
 
   const getRandomBackground = () => {
