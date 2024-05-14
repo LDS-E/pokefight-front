@@ -11,7 +11,7 @@ const ProgressBar = ({ label, value, minValue, maxValue, color, border }) => {
 
   return (
     <div>
-      <div className="mb-1 text-base font-bold font-secondary dark:text-white">
+      <div className="mb-1 text-base text-white font-bold font-secondary dark:text-white">
         {label}
       </div>
       <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700">

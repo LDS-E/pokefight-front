@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import PokemonDetailCard from "../components/PokemonDetailCard";
 import ImpressivePokemonCard from "../components/ImpressivePokemonCard";
-import "../index.css";
 
 const ChoosePokemonPage = () => {
   const [pokedex, setPokedex] = useState([]);
@@ -11,10 +10,13 @@ const ChoosePokemonPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [selectedTypes, setSelectedTypes] = useState([]);
+  const [isLoading, setIsLoading] = useState(false); //  variable of state to control loading
   const limit = 50;
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true); // define isloading to true before to fetch api
+
       try {
         let url = `https://pokefight-backend-9t63.onrender.com/api/pokemons?limit=${limit}&page=${page}`;
 
@@ -32,6 +34,8 @@ const ChoosePokemonPage = () => {
       } catch (error) {
         console.error("Error fetching Pokémon data:", error);
       }
+
+      setIsLoading(false); // Define isLoading to false after API fetch ends
     };
 
     fetchData();
@@ -93,21 +97,21 @@ const ChoosePokemonPage = () => {
   const renderPageButtons = () => {
     const pages = [];
 
-    // Adiciona o botão "First Page" se não estiver na primeira página
+    // add btn to first page if not in first page
     if (page > 1) {
       pages.push(
         <button
           key={"first"}
           onClick={() => goToPage(1)}
           className="btn bg-red-600 text-white font-secondary py-2 px-4 rounded-md mr-2 hover:bg-red-800"
-          style={{ minWidth: "2.5rem" }} // Definindo um tamanho fixo para os botões
+          style={{ minWidth: "2.5rem" }}
         >
           {"First Page"}
         </button>
       );
     }
 
-    // Calcula o início e o fim da seção central dos botões
+    // Calcula of central section of pagination btn
     let startPage = Math.max(1, page - 1);
     let endPage = Math.min(totalPages, startPage + 2);
 
@@ -167,7 +171,7 @@ const ChoosePokemonPage = () => {
   };
 
   return (
-    <div className="bg-black min-h-screen">
+    <div className="bg-[url('/images/Newbattlefield.png')] bg-center bg-cover h-full">
       <div className="flex justify-center pt-4">
         <input
           type="text"
@@ -195,7 +199,21 @@ const ChoosePokemonPage = () => {
           </div>
         ))}
       </div>
+      {isLoading && (
+        <div className="flex items-center justify-center mt-8">
+          <img
+            src="/images/Loading.gif"
+            alt="Loading..."
+            className="w-16 h-16 md:w-48 md:h-48 mr-2" // Tamanho do GIF responsivo
+          />
+          <p className="text-white font-secondary font-semibold text-base md:text-2xl">
+            Loading...
+          </p>{" "}
+          {/* Tamanho do texto responsivo */}
+        </div>
+      )}
       <div className="flex justify-center mt-8">{renderPageButtons()}</div>
+
       {selectedPokemon && (
         <ImpressivePokemonCard
           pokemon={selectedPokemon}
