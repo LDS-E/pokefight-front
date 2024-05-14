@@ -5,10 +5,10 @@ const AboutPage = () => {
     <div className="bg-[#221F1F] min-h-screen pt-24">
       <div className="container pt-4 mx-auto">
         <h2 className="text-2xl font-main mb-4 text-yellow-500">
-          About PokéFight
+          About PokéArena
         </h2>
         <p className="text-white font-secondary">
-          Welcome to PokéFight, where you embark on an exciting journey to
+          Welcome to PokéArena, where you embark on an exciting journey to
           become the ultimate Pokémon Trainer!
         </p>
         <p className="text-white font-secondary">

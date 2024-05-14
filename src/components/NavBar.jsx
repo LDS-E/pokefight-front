@@ -22,7 +22,7 @@ const NavBar = () => {
               width={50}
               className="hover:rotate-180 transition-all duration-1000"
             />
-            <span>PokéFight</span>
+            <span>PokéArena</span>
           </div>
         </Link>
 

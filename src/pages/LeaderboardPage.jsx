@@ -143,7 +143,7 @@ const LeaderboardPage = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex m-auto justify-center pb-6">
             <h1 className="text-4xl font-main font-extrabold text-center text-white mb-8 pt-24">
-              Pokémon Leaderboard
+              PokéArena Leaderboard
             </h1>
             <p className="text-6xl pt-24">🏆</p>
           </div>
