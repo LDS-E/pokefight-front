@@ -443,4 +443,6 @@ const BattlePage = ({ battlefield }) => {
   );
 };
 
+//todo buttons on Win/Lose Visit Leaderboard and Restart Fight
+
 export default BattlePage;
