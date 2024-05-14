@@ -5,7 +5,7 @@ const LandingPage = ({ user, setUser }) => {
   return (
     <div className=" bg-[url('images/bg8.png')] bg-center bg-cover flex flex-col items-center justify-center h-screen ">
       <div className="">
-        <h1 className="text-7xl font-bold mb-20 font-main text-yellow-500 text-nowrap [text-shadow:_5px_-1px_2px_rgba(24,69,129,1)]">
+        <h1 className="lg:text-7xl xs:text-3xl sm:text-4xl font-bold mb-20 font-main text-yellow-500 text-nowrap [text-shadow:_5px_-1px_2px_rgba(24,69,129,1)]">
           Welcome to PokéFight!
         </h1>
       </div>

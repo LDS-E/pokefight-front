@@ -247,7 +247,9 @@ const BattlePage = ({ battlefield }) => {
   };
 
   return (
-    <div className={`${background} bg-no-repeat bg-cover  bg-center `}>
+    <div
+      className={`${background} bg-no-repeat bg-cover  bg-center pt-24 min-h-screen `}
+    >
       {isLoading ? (
         <img src={Loading} width={60} />
       ) : (
@@ -410,7 +412,7 @@ const BattlePage = ({ battlefield }) => {
           <button
             onClick={handleStartFight}
             disabled={isDisabled}
-            className="btn bg-red-500 hover:bg-red-800 text-white mt-4 mx-auto disabled:bg-red-300 disabled:text-black"
+            className="btn bg-red-600 hover:bg-red-800 text-white mt-4 mx-auto disabled:bg-red-300 disabled:text-black font-secondary"
           >
             Start fight
           </button>

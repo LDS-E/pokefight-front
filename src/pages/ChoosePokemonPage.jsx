@@ -171,7 +171,11 @@ const ChoosePokemonPage = () => {
   };
 
   return (
-    <div className="bg-[url('/images/Newbattlefield.png')] bg-center bg-cover h-full">
+    <div
+      className={`bg-[url('/images/Newbattlefield.png')] bg-center bg-cover ${
+        isLoading ? "h-screen" : "h-full"
+      } pt-24`}
+    >
       <div className="flex justify-center pt-4">
         <input
           type="text"

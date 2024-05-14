@@ -12,7 +12,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="bg-red-600 text-white p-4 font-secondary fixed w-full z-10">
+    <nav className="bg-red-600 text-white p-4 font-secondary fixed w-full z-10 ">
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="text-xl font-secondary font-bold">
           <div className="flex items-center justify-center gap-2">
@@ -68,26 +68,6 @@ const NavBar = () => {
             About
           </Link>
         </div>
-      </div>
-      {/* Menu que será exibido em telas menores */}
-      <div className="md:hidden text-center mt-4">
-        {" "}
-        {/* Oculto em telas maiores que médio */}
-        <Link to="/choose-pokemon" className="block py-2">
-          Choose Pokémon
-        </Link>
-        <Link to="/choose-battle-field" className="block py-2">
-          Choose Battle Field
-        </Link>
-        <Link to="/battle" className="block py-2">
-          Battle
-        </Link>
-        <Link to="/leaderboard" className="block py-2">
-          Leaderboard
-        </Link>
-        <Link to="/about" className="block py-2">
-          About
-        </Link>
       </div>
     </nav>
   );
